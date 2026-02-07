@@ -1,7 +1,3 @@
-"""
-Report Generator Module
-Generates formatted text report with all model information
-"""
 
 from models.llm_data import get_llm_models
 from core.evaluator import evaluate_all_models
@@ -9,12 +5,7 @@ from core.ranker import rank_models, get_ranking_justification
 
 
 def generate_report_data():
-    """
-    Combines all data needed for the report
     
-    Returns:
-        dict: Complete report data including models info and rankings
-    """
     models_data = get_llm_models()
     evaluated_scores = evaluate_all_models()
     ranked_models = rank_models(evaluated_scores)
@@ -29,15 +20,7 @@ def generate_report_data():
 
 
 def format_report_text(report_data):
-    """
-    Formats the report data into a structured text format
     
-    Args:
-        report_data (dict): Complete report data
-    
-    Returns:
-        str: Formatted report text
-    """
     text = "=" * 80 + "\n"
     text += "LLM COMPARISON AND RANKING REPORT\n"
     text += "=" * 80 + "\n\n"

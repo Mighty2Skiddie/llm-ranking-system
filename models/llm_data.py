@@ -1,15 +1,7 @@
-"""
-LLM Data Storage
-Stores information about each LLM model including advantages, disadvantages, and comfort level
-"""
+
 
 def get_llm_models():
-    """
-    Returns a dictionary containing all LLM models with their properties
     
-    Returns:
-        dict: Dictionary with model names as keys and their properties as values
-    """
     models = {
         "GPT-4o": {
             "advantages": [

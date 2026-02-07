@@ -1,7 +1,4 @@
-"""
-PDF Exporter Module
-Exports the report to a professional PDF document
-"""
+
 
 import os
 from reportlab.lib.pagesizes import letter
@@ -13,28 +10,19 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT
 
 
 def create_pdf_report(report_data, output_path="output/assignment.pdf"):
-    """
-    Creates a PDF report with formatted tables and text
     
-    Args:
-        report_data (dict): Complete report data
-        output_path (str): Path where PDF will be saved
     
-    Returns:
-        str: Path to the generated PDF file
-    """
-    # Create output directory if it doesn't exist
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
-    # Create PDF document
+    
     doc = SimpleDocTemplate(output_path, pagesize=letter,
                             rightMargin=0.5*inch, leftMargin=0.5*inch,
                             topMargin=0.5*inch, bottomMargin=0.5*inch)
     
-    # Container for PDF elements
+    
     elements = []
     
-    # Define styles
+   
     styles = getSampleStyleSheet()
     
     title_style = ParagraphStyle(
@@ -57,12 +45,12 @@ def create_pdf_report(report_data, output_path="output/assignment.pdf"):
         fontName='Helvetica-Bold'
     )
     
-    # Add title
+    
     title = Paragraph("LLM COMPARISON AND RANKING REPORT", title_style)
     elements.append(title)
     elements.append(Spacer(1, 0.3*inch))
     
-    # Add rankings summary table
+   
     elements.append(Paragraph("Overall Rankings", heading_style))
     
     ranking_data = [["Rank", "Model", "Score", "Comfort Level"]]
@@ -129,22 +117,13 @@ def create_pdf_report(report_data, output_path="output/assignment.pdf"):
         elements.append(detail_table)
         elements.append(Spacer(1, 0.3*inch))
     
-    # Build PDF
+    
     doc.build(elements)
     
     return output_path
 
 
 def get_ranking_justification_text(rank, model_name):
-    """
-    Helper function to get justification text
-    
-    Args:
-        rank (int): Model rank
-        model_name (str): Name of the model
-    
-    Returns:
-        str: Justification text
-    """
+   
     from core.ranker import get_ranking_justification
     return get_ranking_justification(rank, model_name)
