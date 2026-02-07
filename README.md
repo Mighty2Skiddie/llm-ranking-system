@@ -523,4 +523,3 @@ Possible improvements (not implemented):
 ---
 
 **Created for academic assignment purposes**  
-*Feel free to customize and extend for your needs*
