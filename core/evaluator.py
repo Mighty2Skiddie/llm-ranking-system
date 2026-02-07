@@ -1,34 +1,20 @@
-"""
-Evaluator Module
-Defines evaluation criteria and computes weighted scores for each model
-"""
+
 
 def evaluation():
-    """
-    Returns evaluation criteria with their weights
-    Weights must sum to 1.0 (100%)
     
-    Returns:
-        dict: Criteria names as keys and their weights as values
-    """
     criteria = {
-        "Performance": 0.30,      # 30% weight
-        "Cost Efficiency": 0.25,  # 25% weight
-        "Ease of Use": 0.20,      # 20% weight
-        "Customization": 0.15,    # 15% weight
-        "Support & Documentation": 0.10  # 10% weight
+        "Performance": 0.30,      
+        "Cost Efficiency": 0.25,  
+        "Ease of Use": 0.20,      
+        "Customization": 0.15,    
+        "Support & Documentation": 0.10  
     }
     
     return criteria
 
 
-def get_model_scores():
-    """
-    Returns raw scores (0-10) for each model across all criteria
+def model_scores():
     
-    Returns:
-        dict: Model names as keys and their criteria scores as values
-    """
     scores = {
         "GPT-4o": {
             "Performance": 9.5,
@@ -70,21 +56,11 @@ def get_model_scores():
     return scores
 
 
-def calculate_weighted_score(model_name, criteria_weights, model_scores):
-    """
-    Calculates the weighted total score for a single model
-    
-    Args:
-        model_name (str): Name of the model
-        criteria_weights (dict): Weights for each criterion
-        model_scores (dict): Raw scores for the model
-    
-    Returns:
-        float: Weighted total score (0-10 scale)
-    """
+def weighted_score(model_name, criteria_weights, model_scores):
+   
     total_score = 0.0
     
-    # Multiply each criterion score by its weight and sum them
+    
     for criterion, weight in criteria_weights.items():
         score = model_scores[model_name][criterion]
         total_score += score * weight
@@ -93,18 +69,13 @@ def calculate_weighted_score(model_name, criteria_weights, model_scores):
 
 
 def evaluate_all_models():
-    """
-    Evaluates all models and returns their weighted scores
     
-    Returns:
-        dict: Model names as keys and their weighted scores as values
-    """
     criteria = evaluation()
-    scores = get_model_scores()
+    scores = model_scores()
     results = {}
     
-    # Calculate weighted score for each model
+    
     for model_name in scores.keys():
-        results[model_name] = calculate_weighted_score(model_name, criteria, scores)
+        results[model_name] = weighted_score(model_name, criteria, scores)
     
     return results
